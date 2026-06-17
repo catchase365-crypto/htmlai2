@@ -4,6 +4,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HTML Editor">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23a78bfa'/%3E%3Cpath d='M30 30 L70 50 L30 70 Z' fill='white'/%3E%3C/svg%3E">
     <title>HTML Editor AI v5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
@@ -262,65 +266,6 @@
           transform: translateX(-50%) translateY(0);
           opacity: 1;
       }
-      /* --- PC端 Mac 风格菜单栏 --- */
-      @media (min-width: 1024px) {
-          .mac-menu-bar {
-              display: flex !important;
-              height: 28px;
-              background-color: color-mix(in srgb, var(--bg-ui) 80%, transparent);
-              backdrop-filter: blur(20px) saturate(180%);
-              border-bottom: 1px solid var(--border);
-              align-items: center;
-              padding: 0 12px;
-              gap: 4px;
-              z-index: 1000;
-              user-select: none;
-          }
-          .mac-menu-item {
-              position: relative;
-              font-size: 12px;
-              color: var(--text-main);
-              padding: 2px 10px;
-              border-radius: 4px;
-              cursor: default;
-              outline: none;
-          }
-          .mac-menu-item:hover, .mac-menu-item:focus { background: rgba(255,255,255,0.1); }
-          .mac-dropdown {
-              display: none;
-              position: absolute;
-              top: 26px;
-              left: 0;
-              min-width: 180px;
-              padding: 6px !important;
-              z-index: 1001;
-              pointer-events: auto;
-          }
-          .mac-menu-item:focus .mac-dropdown, .mac-menu-item:focus-within .mac-dropdown {
-              display: block !important;
-          }
-          .mac-dropdown-item {
-              padding: 5px 10px;
-              border-radius: 6px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              color: var(--text-main);
-              transition: background 0.2s;
-          }
-          .mac-dropdown-item:hover {
-              background: var(--accent);
-              color: var(--badge-txt);
-          }
-          .mac-dropdown-item span:last-child {
-              font-size: 10px;
-              opacity: 0.5;
-          }
-      }
-      @media (max-width: 1023px) {
-          .mac-menu-bar { display: none !important; }
-      }
-
       /* 结构树样式 */
       .tree-view details { margin-left: 8px; }
       .tree-view summary { cursor: pointer; outline: none; list-style: none; display: flex; align-items: center; gap: 4px; }
@@ -381,81 +326,6 @@
   </head>
 
   <body class="flex flex-col h-[100dvh]">
-
-    <!-- PC端适配菜单栏 -->
-    <nav class="mac-menu-bar hidden">
-      <div class="mac-menu-item" tabindex="0">
-        <span class="font-bold text-[var(--accent)]"> Editor</span>
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>About AI Editor</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Check updates...</span><span></span></div>
-          <div class="mac-dropdown-item"><span>System Settings</span><span>⌘,</span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">File
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>New Tab</span><span>⌘N</span></div>
-          <div class="mac-dropdown-item"><span>Save As...</span><span>⇧⌘S</span></div>
-          <div class="mac-dropdown-item"><span>Export Code</span><span>⌘E</span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Edit
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Refactor Code</span><span>⌥F</span></div>
-          <div class="mac-dropdown-item"><span>Copy Path</span><span>⇧⌘C</span></div>
-          <div class="mac-dropdown-item"><span>Selection Mode</span><span></span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">View
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Appearance</span><span></span></div>
-          <div class="mac-dropdown-item"><span>MiniMap</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Zen Mode</span><span>⌘K Z</span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Selection
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Expand Selection</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Shrink Selection</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Add Cursors</span><span>⌥⌘↑</span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Run
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Start Debugging</span><span>F5</span></div>
-          <div class="mac-dropdown-item"><span>Run Without Debug</span><span>^F5</span></div>
-          <div class="mac-dropdown-item"><span>Open Timeline</span><span></span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Project
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Build Project</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Dependencies</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Asset Manager</span><span></span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">GitHub
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Fetch Origin</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Pull Requests</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Action Logs</span><span></span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Window
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Minimize</span><span>⌘M</span></div>
-          <div class="mac-dropdown-item"><span>Zoom</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Split Editor</span><span>⌘\</span></div>
-        </div>
-      </div>
-      <div class="mac-menu-item" tabindex="0">Help
-        <div class="mac-dropdown immersive-panel">
-          <div class="mac-dropdown-item"><span>Documentation</span><span></span></div>
-          <div class="mac-dropdown-item"><span>Show Shortcuts</span><span>⌘K ⌘S</span></div>
-          <div class="mac-dropdown-item"><span>Join Community</span><span></span></div>
-        </div>
-      </div>
-    </nav>
 
     <!-- 顶部工具栏：集成了 AI、文件管理、主题设置与执行控制 -->
     <header class="ui-panel p-2 flex items-center justify-between shrink-0 z-30 relative overflow-x-auto">
@@ -1294,7 +1164,7 @@
       let historyStack = [];
       let historyIndex = -1;
       const MAX_HISTORY = 100;
-      let debounceTimer, previewWindow = null;
+      let debounceTimer, previewWindow = null, previewBlobUrl = null;
       
       window.onload = function() {
           initThemes(); 
@@ -2033,22 +1903,30 @@
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
       }
       
-      // 开启或聚焦实时预览窗口：如果窗口不存在则新建，并同步当前代码内容
+      // 开启或聚焦实时预览窗口：使用 Blob URL 确保预览页拥有独立身份，支持“添加到主屏幕”
       function toggleLivePreview() {
-          if (!previewWindow || previewWindow.closed) {
-              previewWindow = window.open("", "EditorLivePreview");
-          }
-          updatePreview();
-          previewWindow.focus();
+          updatePreview(true);
+          if (previewWindow) previewWindow.focus();
       }
       
-      // 将当前编辑器代码实时推送到已打开的预览窗口
-      function updatePreview() {
-          if (previewWindow && !previewWindow.closed) {
-              const doc = previewWindow.document;
-              doc.open();
-              doc.write(codeArea.value);
-              doc.close();
+      // 将当前编辑器代码实时同步至预览窗口，forceOpen 参数用于强制刷新 URL 身份
+      function updatePreview(forceOpen = false) {
+          const code = codeArea.value;
+          if (!code.trim() && !forceOpen) return;
+
+          // 仅在窗口开启时执行逻辑
+          if ((previewWindow && !previewWindow.closed) || forceOpen) {
+              const blob = new Blob([code], { type: 'text/html;charset=utf-8' });
+              if (previewBlobUrl) URL.revokeObjectURL(previewBlobUrl);
+              previewBlobUrl = URL.createObjectURL(blob);
+
+              if (forceOpen || !previewWindow || previewWindow.closed) {
+                  // 第一次打开或强制刷新时，通过 URL 加载以允许 iOS 识别为可添加应用
+                  previewWindow = window.open(previewBlobUrl, "EditorLivePreview");
+              } else {
+                  // 实时同步时使用 replace 避免产生冗余历史记录且不影响 PWA 状态
+                  previewWindow.location.replace(previewBlobUrl);
+              }
           }
       }
       
